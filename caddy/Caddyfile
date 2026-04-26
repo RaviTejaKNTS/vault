@@ -1,0 +1,6 @@
+https://localhost:443 {
+	tls /etc/caddy/certs/localhost.pem /etc/caddy/certs/localhost-key.pem
+
+	encode gzip
+	reverse_proxy vaultwarden:80
+}

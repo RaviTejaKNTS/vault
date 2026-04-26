@@ -3,6 +3,10 @@ target
 
 # Data folder
 data
+vw-data
+
+# Local TLS assets
+certs
 
 # IDE files
 .vscode
