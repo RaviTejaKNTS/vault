@@ -8,13 +8,19 @@ vw-data
 # Local TLS assets
 certs
 
+# Local macOS files
+.DS_Store
+
 # IDE files
 .vscode
 .idea
 *.iml
 
-# Environment file
+# Environment files
 .env
+.env.*
+!.env.template
+!.env.production.example
 
 # Web vault
 web-vault

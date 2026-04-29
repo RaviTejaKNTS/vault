@@ -1,24 +1,23 @@
 services:
   vaultwarden:
-    image: vaultwarden/server:latest
-    container_name: vaultwarden
+    image: vaultwarden/server:1.35.8
     restart: unless-stopped
     environment:
-      DOMAIN: "https://localhost:8443"
-      SIGNUPS_ALLOWED: "true"
+      DOMAIN: ${DOMAIN}
+      SIGNUPS_ALLOWED: ${SIGNUPS_ALLOWED:-false}
+      INVITATIONS_ALLOWED: ${INVITATIONS_ALLOWED:-false}
+      SHOW_PASSWORD_HINT: ${SHOW_PASSWORD_HINT:-false}
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
     volumes:
-      - ./vw-data/:/data/
+      - vaultwarden_data:/data
     expose:
       - "80"
+    networks:
+      - dokploy-network
 
-  caddy:
-    image: caddy:2-alpine
-    container_name: vaultwarden-caddy
-    restart: unless-stopped
-    depends_on:
-      - vaultwarden
-    volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./certs:/etc/caddy/certs:ro
-    ports:
-      - 127.0.0.1:8443:443
+volumes:
+  vaultwarden_data:
+
+networks:
+  dokploy-network:
+    external: true
