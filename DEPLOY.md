@@ -40,7 +40,7 @@ This repo is prepared for deploying Vaultwarden as a separate Dokploy Docker Com
 Generate a hashed admin token instead of storing a plain token:
 
 ```sh
-docker run --rm -it vaultwarden/server:1.35.8 /vaultwarden hash
+docker run --rm -it vaultwarden/server:1.36.0 /vaultwarden hash
 ```
 
 Use the generated Argon2 PHC string as `ADMIN_TOKEN`. The password you type into the hash command is what you use to log in at `/admin`.
